@@ -1,35 +1,35 @@
-import React, { useState, useEffect } from 'react';
-
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 const Question2 = () => {
-    const [albumImageUrl, setalbumImageUrl] = useState();
-    const [category, setCategory] = useState({ title: 'default title' });
-    const [answer, setAnswer] = useState();
-    const [showAnswer, setShowAnswer] = useState(false);
+  const [albumImageUrl, setalbumImageUrl] = useState("");
+  const [category, setCategory] = useState({ title: "default title" });
+  const [answer, setAnswer] = useState();
+  const [showAnswer, setShowAnswer] = useState(false);
 
-    useEffect(() => {
-        axios({
-            url: 'http://localhost:5080/Spotify',
-            method: 'GET',
-        }).then((result) => {
-            setalbumImageUrl(result[0].albumImageUrl);
-            setAnswer(result[0].answer);
-            setCategory(result[0].category);
-        });
-    }, []);
+  useEffect(() => {
+    axios({
+      url: "http://localhost:5080/Spotify",
+      method: "GET",
+    }).then((result) => {
+      console.log(result);
+      setalbumImageUrl(result?.data?.albumImageUrl); //Pushes picture to setalbumimageurl
 
-    return ( <
-        div >
-        <
-        div > Category: { category.title } < /div> <
-        div > Question: { question } < /div> <
-        div > Answer: { showAnswer ? answer : null } < /div> <
-        div >
-        <
-        button onClick = {
-            () => setShowAnswer(true) } > Reveal Answer < /button> <
-        /div> <
-        /div>
-    );
+      //   setAnswer(result?.answer);
+      //   setCategory(result?.category);
+    });
+  }, []);
+  console.log(albumImageUrl);
+  return (
+    <div>
+      <img src={albumImageUrl}></img>
+
+      {/* <div> Question: {question} </div> */}
+      <div> Answer: {showAnswer ? answer : null} </div>
+      <div>
+        <button onClick={() => setShowAnswer(true)}> Reveal Answer </button>
+      </div>
+    </div>
+  );
 };
 
 export default Question2;

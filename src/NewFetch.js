@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-const Question2 = () => {
+
+const Player1 = () => {
   const [albumImageUrl, setalbumImageUrl] = useState("");
   const [artist, setartist] = useState("");
   const [isPlaying, setisPlaying] = useState();
@@ -52,4 +53,4 @@ const Question2 = () => {
   );
 };
 
-export default Question2;
+export default Player1;
